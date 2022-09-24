@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, Text, Dimensions, StyleSheet, StatusBar, View, Image, TouchableOpacity, TextInput} from 'react-native';
+import KeyboardAvoidingComponent from '../components/keyboardAvoid';
 
 const {width, height} = Dimensions.get('window');
 const COLORS = {primary: '#0E4944', white: '#fff', secondary:"#9BD35A"};
@@ -7,78 +8,82 @@ const COLORS = {primary: '#0E4944', white: '#fff', secondary:"#9BD35A"};
 const RegisterScreen = ({navigation}) => {
 
   return (
-    <SafeAreaView
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: COLORS.primary}}>
-        <StatusBar backgroundColor={COLORS.primary} />
-        <View style={{height:"10%", alignItems:"center"}}>
-            <Image
-                source={require('../images/logo.png')}
-                style={{height: 51, width:145}}
-            />
-        </View>
-        <View style={[styles.shadow, {height:"58%", width:"90%", backgroundColor:COLORS.white, borderRadius:24, paddingHorizontal:20, paddingVertical:20}]}>
-            <View style={{width:"70%"}}>
-                <Text style={{fontSize:24, fontWeight:"bold"}}>Créer un nouveau Compte</Text>
-            </View>
-            <View style={[styles.input,{marginTop:50}]}>
-              <TextInput
-                style={styles.inputForm}
-                placeholder="Votre adresse"
+    <KeyboardAvoidingComponent>
+
+      <SafeAreaView
+        style={{height: height, justifyContent: 'center', alignItems: 'center', backgroundColor: COLORS.primary}}>
+          <StatusBar backgroundColor={COLORS.primary} />
+          <View style={{height:"10%", alignItems:"center"}}>
+              <Image
+                  source={require('../images/logo.png')}
+                  style={{height: 51, width:145}}
               />
-            </View>
-            <View style={styles.input}>
-              <TextInput
+          </View>
+          <View style={[styles.shadow, {height:"58%", width:"90%", backgroundColor:COLORS.white, borderRadius:24, paddingHorizontal:20, paddingVertical:20}]}>
+              <View style={{width:"70%"}}>
+                  <Text style={{fontSize:24, fontWeight:"bold"}}>Créer un nouveau Compte</Text>
+              </View>
+              <View style={[styles.input,{marginTop:50}]}>
+                <TextInput
                   style={styles.inputForm}
-                  placeholder="Mot de passe"
+                  placeholder="Votre adresse"
                 />
-            </View>
-            <View style={styles.input}>
-              <TextInput
-                  style={styles.inputForm}
-                  placeholder="Mot de passe"
-                />
-            </View>
-
-            
-
-            <TouchableOpacity style={styles.submit}>
-                <Text style={{fontSize:16, color:"white"}}>
-                  S'inscrire
-                </Text>
-            </TouchableOpacity>
-        </View>
-        <View style={{height:"8%", width:"80%", backgroundColor:"white", borderBottomLeftRadius:24, borderBottomRightRadius:18, justifyContent:"center", alignItems:"center"}}>
-            <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-                <Text style={{color:"#C8C8C8", fontSize:12}}>
-                    Vous avez déjà un compte ?
-                </Text>
-                <Text style={{color:"#9BD35A", fontWeight:"bold", textAlign:"center"}}>
-                    Se connecter 
-                </Text>
-            </TouchableOpacity>
-        </View>
-
-        <Text style={{marginTop:20, fontSize:14, color:"#F5F6F8"}}>
-          Ou s'inscrire avec
-        </Text>
-
-        <View style={{justifyContent:"center", alignItems:"center", flexDirection:"row", marginTop:30, marginBottom:30}}>
-          <View style={{width:"35%", flexDirection:"row", justifyContent:"space-between"}}>
-              <TouchableOpacity style={styles.btnRs}>
-                  <Image
-                    style={styles.tinyLogo}
-                    source={require('../images/facebook.png')}
+              </View>
+              <View style={styles.input}>
+                <TextInput
+                    style={styles.inputForm}
+                    placeholder="Mot de passe"
                   />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.btnRs}>
-                  <Image
-                    style={styles.tinyLogo}
-                    source={require('../images/gmail.png')}
+              </View>
+              <View style={styles.input}>
+                <TextInput
+                    style={styles.inputForm}
+                    placeholder="Mot de passe"
                   />
+              </View>
+
+              
+
+              <TouchableOpacity style={styles.submit}>
+                  <Text style={{fontSize:16, color:"white"}}>
+                    S'inscrire
+                  </Text>
               </TouchableOpacity>
           </View>
-        </View>
-    </SafeAreaView>
+          <View style={{height:"8%", width:"80%", backgroundColor:"white", borderBottomLeftRadius:24, borderBottomRightRadius:18, justifyContent:"center", alignItems:"center"}}>
+              <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+                  <Text style={{color:"#C8C8C8", fontSize:12}}>
+                      Vous avez déjà un compte ?
+                  </Text>
+                  <Text style={{color:"#9BD35A", fontWeight:"bold", textAlign:"center"}}>
+                      Se connecter 
+                  </Text>
+              </TouchableOpacity>
+          </View>
+
+          <Text style={{marginTop:20, fontSize:14, color:"#F5F6F8"}}>
+            Ou s'inscrire avec
+          </Text>
+
+          <View style={{justifyContent:"center", alignItems:"center", flexDirection:"row", marginTop:30, marginBottom:30}}>
+            <View style={{width:"35%", flexDirection:"row", justifyContent:"space-between"}}>
+                <TouchableOpacity style={styles.btnRs}>
+                    <Image
+                      style={styles.tinyLogo}
+                      source={require('../images/facebook.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btnRs}>
+                    <Image
+                      style={styles.tinyLogo}
+                      source={require('../images/gmail.png')}
+                    />
+                </TouchableOpacity>
+            </View>
+          </View>
+      </SafeAreaView>
+    </KeyboardAvoidingComponent>
+
   );
 };
 

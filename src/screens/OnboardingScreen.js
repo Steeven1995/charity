@@ -18,7 +18,7 @@ const COLORS = {primary: '#0E4944', white: '#fff', secondary:"#9BD35A"};
 const slides = [
   {
     id: '1',
-    image: require('../images/image.png'),
+    image: require('../images/illustration.png'),
     title: "Diffuser l'amour facilement",
     subtitle: "vous ne savez pas comment aider les gens, utilisez soutien.ga",
   },
