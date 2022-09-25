@@ -24,23 +24,28 @@ const HomeScreen = ({navigation}) => {
             <View style={{height:50}}>
               <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{flexDirection:"row", paddingHorizontal:15}}>
                     <TouchableWithoutFeedback>
-                        <View  style={{marginTop :0,height:31, backgroundColor: "#0E4944", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:20}}>
-                            <Text style={{color : "white", textAlign:"center"}}>Education</Text>
+                        <View  style={{marginTop :0,height:31, backgroundColor: "#0E4944", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:5}}>
+                            <Text style={{color : "white", textAlign:"center"}}>Tout</Text>
                         </View>
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback>
-                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:20}}>
+                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:5}}>
+                            <Text style={{color : "#F5F6F8", textAlign:"center"}}>Education</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback>
+                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:5}}>
                             <Text style={{color : "#F5F6F8", textAlign:"center"}}>Santé</Text>
                         </View>
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback>
-                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:20}}>
+                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:5}}>
                             <Text style={{color : "#F5F6F8", textAlign:"center"}}>Environnement</Text>
                         </View>
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback>
-                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:20}}>
-                            <Text style={{color : "#F5F6F8", textAlign:"center"}}>Famine</Text>
+                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:5}}>
+                            <Text style={{color : "#F5F6F8", textAlign:"center"}}>Alimentation</Text>
                         </View>
                     </TouchableWithoutFeedback>
 
@@ -57,8 +62,8 @@ const HomeScreen = ({navigation}) => {
                     <View style={styles.shadow}>
                         <ImageBackground source={require('../images/cause-3.jpg')} resizeMode="cover" imageStyle={{borderRadius:10}} style={{height:200, justifyContent:"space-between", alignItems:"flex-end", flexDirection:"row", padding:10}}>
                             <View style={{flexDirection:"row",paddingVertical:5}}>
-                              <Text style={{fontSize:10, paddingVertical:5, paddingHorizontal:10,backgroundColor:"#F5F6F8", borderRadius:20, marginLeft:10, fontStyle:"italic"}}>Education</Text>
-                              <Text style={{fontSize:10, paddingVertical:5, paddingHorizontal:10, backgroundColor:"#F5F6F8", borderRadius:20, marginLeft:10, fontStyle:"italic"}}>Santé</Text>
+                              <Text style={{fontSize:10, paddingVertical:5, paddingHorizontal:10,backgroundColor:"#F5F6F8", borderRadius:5, marginLeft:10}}>Education</Text>
+                              <Text style={{fontSize:10, paddingVertical:5, paddingHorizontal:10, backgroundColor:"#F5F6F8", borderRadius:5, marginLeft:10}}>Santé</Text>
                             </View>
                             <TouchableOpacity style={styles.share}>
                               <AntDesign name='sharealt' size={20} color={"#0E4944"}/>
@@ -72,8 +77,8 @@ const HomeScreen = ({navigation}) => {
                                     style={{height: 50, width:50, borderRadius:25}}
                                 />
                                 <View style={{marginLeft:10}}>
-                                  <Text style={{fontSize:12, color:"gray", fontStyle:"italic"}}>Par : Soutien.ga</Text>
-                                  <Text style={{fontSize:12, color:"gray", fontStyle:"italic"}}>Publié le :  27 juillet 2021</Text>
+                                  <Text style={{fontSize:12, color:"black"}}>Par : Soutien.ga</Text>
+                                  <Text style={{fontSize:12, color:"gray"}}>Publié le :  27 juillet 2021</Text>
                                 </View>
                             </View>
                             <View style={{paddingHorizontal:10}}>
@@ -86,11 +91,11 @@ const HomeScreen = ({navigation}) => {
                                     <View style={{height:5, borderRadius:20, backgroundColor:"#9BD35A", width:"80%"}}></View>   
                                 </View>
                                 <View style={{flexDirection:"row", paddingVertical:10, justifyContent:"space-between"}}>
-                                    <Text style={{fontSize:12, color:"gray", fontStyle:"italic"}}>Objectif : </Text>
+                                    <Text style={{fontSize:12, color:"gray"}}>Objectif : </Text>
                                     <Text>XAF 500.000  {"(80%)"}</Text>
                                 </View>
                                 <View style={{flexDirection:"row", justifyContent:"space-between"}}>
-                                    <Text style={{fontSize:12, color:"gray", fontStyle:"italic"}}>Restant : </Text>
+                                    <Text style={{fontSize:12, color:"gray"}}>Restant : </Text>
                                     <Text>XAF 100.000  {"(20%)"}</Text>
                                 </View>
                             </View>

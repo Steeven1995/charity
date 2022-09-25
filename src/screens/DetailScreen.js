@@ -28,7 +28,7 @@ const DetailScreen = ({navigation}) => {
                         />
                         <View style={{marginLeft:10}}>
                             <Text style={{fontSize:12, color:"black"}}>Par : Soutien.ga</Text>
-                            <Text style={{fontSize:12, color:"gray", fontStyle:"italic"}}>Publié le :  27 juillet 2021</Text>
+                            <Text style={{fontSize:12, color:"gray"}}>Publié le :  27 juillet 2021</Text>
                         </View>
                     </View>
                     <TouchableOpacity>
@@ -68,7 +68,7 @@ const DetailScreen = ({navigation}) => {
                     <Image source={require("../images/about-1-1.jpg")} style={{height:40, width:40, borderRadius:20, position:"absolute", left:20, borderWidth:1, borderColor:"white"}}/>
                     <Image source={require("../images/about-1-1.jpg")} style={{height:40, width:40, borderRadius:20, position:"absolute", left:40, borderWidth:1, borderColor:"white"}}/>
                     <View style={{height:40, width:40, borderRadius:20, position:"absolute", borderWidth:1, borderColor:"white", left:60, backgroundColor:"white", alignItems:"center", justifyContent:"center"}}>
-                        <Text style={{fontSize:12}}>+299</Text>
+                        <Text style={{fontSize:10}}>+299</Text>
                     </View> 
                 </View>
                 <TouchableOpacity  onPress={() => setModalVisible(true)} style={styles.call}>
@@ -82,7 +82,6 @@ const DetailScreen = ({navigation}) => {
                 visible={modalVisible}
                 transparent={true}
                 onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
                 setModalVisible(!modalVisible);
                 }}
             >
@@ -101,6 +100,18 @@ const DetailScreen = ({navigation}) => {
                                 FCFA
                             </Text>
                         </View>
+                        <View style={styles.input}>
+                            <TextInput
+                                style={styles.inputFormMobileMoney}
+                                keyboardType='numeric'
+                                placeholder='Numero mobile money'
+                            />
+                            <View style={{flexDirection:"row"}}>
+                                <Image source={require('../images/airtel.png')} style={{width:30, height:30, marginRight:5}}/>
+                                <Image source={require('../images/moov.png')} style={{width:30, height:30, marginRight:5}}/>
+                            </View>
+                        </View>
+                       
                         <View style={{width:"80%", justifyContent:"space-between", flexDirection:"row", alignItems:"center"}}>
                             <TouchableOpacity style={styles.close} onPress={() => setModalVisible(false)}>
                                 <MaterialIcons name='close' size={20} color={"white"}/>
@@ -141,7 +152,7 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center",
         backgroundColor : "#9BD35A",
-        marginTop : 10,
+        marginBottom : 10,
         borderRadius : 4
     },
     input : {
@@ -163,6 +174,13 @@ const styles = StyleSheet.create({
       fontSize : 22,
       width : "90%"
     },
+    inputFormMobileMoney:{
+        height: 56,
+        borderWidth: 0,
+        padding: 10,
+        fontSize : 16,
+        width : "80%"
+    },
     centeredView: {
         flex: 1,
         justifyContent: "flex-end",
@@ -171,7 +189,7 @@ const styles = StyleSheet.create({
       },
       modalView: {
         backgroundColor: "white",
-        height : 200,
+        height : 300,
         width : "100%",
         alignItems: "center",
         borderTopRightRadius:20,
