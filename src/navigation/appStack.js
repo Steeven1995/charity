@@ -3,58 +3,20 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from "react-native-vector-icons/Feather"
+import HomeScreen from '../screens/HomeScreen';
+import SearchScreen from '../screens/SearchScreen';
+import AddScreen from '../screens/AddScreen';
+import MyDonationScreen from '../screens/MyDonationScreen';
+import MyProfil from '../screens/MyProfilScreen';
+import DetailsScreen from "../screens/DetailScreen"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import AntDesign from "react-native-vector-icons/AntDesign"
 import FontAwesome from "react-native-vector-icons/FontAwesome"
-import OnboardingScreen from './screens/OnboardingScreen';
-import LoginScreen from "./screens/LoginScreen"
-import RegisterScreen from './screens/RegisterScreen';
-import ForgetPassScreen from "./screens/ForgetPassScreen"
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import HomeScreen from './screens/HomeScreen';
-import SearchScreen from './screens/SearchScreen';
-import AddScreen from './screens/AddScreen';
-import MyDonationScreen from './screens/MyDonationScreen';
-import MyProfil from './screens/MyProfilScreen';
-import DetailsScreen from "./screens/DetailScreen"
-
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-
-
-
-const App = () => {
-
-  const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null);
-
-  const [user, setUser] = React.useState(undefined)
-  
-  const ckeckUser = async () =>{
-    console.log("Hello")
-  }
-
-  React.useEffect(()=>{
-    ckeckUser();
-  },[])
-
-  React.useEffect(async () => {
-    const appData = await AsyncStorage.getItem('isAppFirstLaunched');
-    if (appData == null) {
-      setIsAppFirstLaunched(true);
-      AsyncStorage.setItem('isAppFirstLaunched', 'false');
-    } else {
-      setIsAppFirstLaunched(false);
-    }
-
-    // AsyncStorage.removeItem('isAppFirstLaunched');
-  }, []);
-
-
-
-  const HomeTab = () => (
+const HomeTab = () => (
     <Tab.Navigator screenOptions={{
       headerShown:false,
       tabBarStyle : {
@@ -110,24 +72,13 @@ const App = () => {
     </Stack.Navigator>
   );
 
-  return (
-    isAppFirstLaunched != null && (
+
+  export default function UserStack() {
+    return (
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-          {isAppFirstLaunched && (
-            <Stack.Screen
-              name="OnboardingScreen"
-              component={OnboardingScreen}
-            />
-          )}
-          <Stack.Screen name="LoginScreen" component={LoginScreen} />
-          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-          <Stack.Screen name="ForgetPass" component={ForgetPassScreen} />
-          <Stack.Screen name="HomeStack" component={HomeStack} />
+          <Stack.Screen name="Home" component={HomeStack} />
         </Stack.Navigator>
       </NavigationContainer>
-    )
-  );
-};
-
-export default App;
+    );
+  }

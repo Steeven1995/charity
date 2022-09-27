@@ -1,11 +1,29 @@
 import React from 'react'
-import { StyleSheet, ImageBackground, View, TouchableOpacity,Text, Image, Modal, TextInput} from 'react-native'
+import { StyleSheet, ImageBackground, View, TouchableOpacity,Text, Image, Modal, TextInput, Share} from 'react-native'
 import AntDesign from "react-native-vector-icons/AntDesign"
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 
 
 const DetailScreen = ({navigation}) => {
     const [modalVisible, setModalVisible] = React.useState(false);
+    const onShare = async () => {
+        try {
+          const result = await Share.share({
+            message: 'React Native | A framework for building native apps using React',
+          });
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // shared with activity type of result.activityType
+            } else {
+              // shared
+            }
+          } else if (result.action === Share.dismissedAction) {
+            // dismissed
+          }
+        } catch (error) {
+          alert(error.message);
+        }
+      };
     return (
         <View style={styles.container}>
             <View style={{backgroundColor:"white", borderBottomLeftRadius:20, borderBottomRightRadius:20}}>
@@ -14,7 +32,7 @@ const DetailScreen = ({navigation}) => {
                         <TouchableOpacity style={styles.share} onPress={()=>navigation.goBack()}>
                             <MaterialIcons name='keyboard-backspace' size={20} color={"#0E4944"}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.share}>
+                        <TouchableOpacity onPress={onShare} style={styles.share}>
                             <AntDesign name='sharealt' size={20} color={"#0E4944"}/>
                         </TouchableOpacity>
                     </View>
@@ -66,8 +84,7 @@ const DetailScreen = ({navigation}) => {
                 <View style={{flexDirection:"row", justifyContent:"center", alignItems:"center", paddingLeft:20}}>
                     <Image source={require("../images/about-1-1.jpg")} style={{height:40, width:40, borderRadius:20, position:"absolute", borderWidth:1, borderColor:"white"}}/>
                     <Image source={require("../images/about-1-1.jpg")} style={{height:40, width:40, borderRadius:20, position:"absolute", left:20, borderWidth:1, borderColor:"white"}}/>
-                    <Image source={require("../images/about-1-1.jpg")} style={{height:40, width:40, borderRadius:20, position:"absolute", left:40, borderWidth:1, borderColor:"white"}}/>
-                    <View style={{height:40, width:40, borderRadius:20, position:"absolute", borderWidth:1, borderColor:"white", left:60, backgroundColor:"white", alignItems:"center", justifyContent:"center"}}>
+                    <View style={{height:40, width:40, borderRadius:20, position:"absolute", borderWidth:1, borderColor:"white", left:40, backgroundColor:"white", alignItems:"center", justifyContent:"center"}}>
                         <Text style={{fontSize:10}}>+299</Text>
                     </View> 
                 </View>
@@ -87,9 +104,7 @@ const DetailScreen = ({navigation}) => {
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={{marginTop:10}}>
-                            Veuillez entrez un montant en FCFA
-                        </Text>
+                        <View style={{marginTop:10, height:5, width:"20%", backgroundColor:"gray", borderRadius:10}}></View>
                         <View style={styles.input}>
                             <TextInput
                                 style={styles.inputForm}

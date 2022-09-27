@@ -1,8 +1,8 @@
 import React from 'react';
-import Router from "./src/router"
+import Navigation from "./src/navigation"
 
 export default function App() {
   return (
-    <Router/>
+    <Navigation/>
   );
 }

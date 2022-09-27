@@ -11,14 +11,14 @@ const buttonTextStyleFirst = {
     paddingHorizontal:100,
     paddingVertical : 10,
     backgroundColor :"#9BD35A",
-    borderRadius : 10,
+    borderRadius : 5,
     color:"white"
 }
 const buttonTextStyle = {
     width : 100,
     paddingVertical : 10,
     backgroundColor :"#9BD35A",
-    borderRadius : 10,
+    borderRadius : 5,
     color:"white",
     textAlign:"center",
     fontSize : 12
@@ -99,9 +99,7 @@ const AddScreen = () => {
         const currentDate = selectedDate || date;
         setShow(Platform.OS==='android');
         setDate(currentDate);
-
         let tempDate = new Date(currentDate);
-        console.warn(tempDate)
         let fDate = tempDate.getDate() + "-" + (tempDate.getMonth()+1) + "-"+ tempDate.getFullYear();
         setText(fDate)
         setShow(false)
@@ -122,7 +120,7 @@ const AddScreen = () => {
                 <View style={{paddingTop:20, paddingHorizontal:20}}>
                     <Text style={{fontSize:20}}>Créer une campagne</Text>
                     <Text style={{fontSize:12, marginTop:10, color:"#3B3B3B"}}>
-                        Compléter quelques informations pour créer ce programme caritatif
+                        Compléter quelques informations pour créer une campagne de financement participatif
                     </Text>
                 </View>
                 <ProgressSteps>
@@ -187,7 +185,6 @@ const AddScreen = () => {
                     </ProgressStep>
                     <ProgressStep label="Description"  previousBtnText="Précédant" finishBtnText="Valider"  nextBtnTextStyle={buttonTextStyle} previousBtnTextStyle={buttonTextStyle}>
                         <View style={{ alignItems: 'center' }}>
-                            <Text>Ajouter une image de couverture</Text>
                             {image ? 
                                 <TouchableOpacity style={{height: 200,width:"100%"}} onPress={pickImage} >
                                     <Image source={{ uri: image }} style={{height: 200,width:"100%", resizeMode:"contain"}} />
@@ -214,7 +211,7 @@ const AddScreen = () => {
                                     numberOfLines={4}
                                     onChangeText={text => onChangeText(text)}
                                     value={value}
-                                    style={{padding: 10}}
+                                    style={{padding: 5}}
                                 />
                                 </View>
                             </View>

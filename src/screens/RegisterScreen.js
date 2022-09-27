@@ -1,11 +1,39 @@
-import React from 'react';
-import {SafeAreaView, Text, Dimensions, StyleSheet, StatusBar, View, Image, TouchableOpacity, TextInput} from 'react-native';
+import React,{useState} from 'react';
+import {SafeAreaView, Dimensions, StyleSheet, StatusBar, View, Image, TouchableOpacity, TextInput, Text, ActivityIndicator} from 'react-native';
 import KeyboardAvoidingComponent from '../components/keyboardAvoid';
+import {createUserWithEmailAndPassword  } from 'firebase/auth';
+import { auth } from '../../config/firebase';
 
 const {width, height} = Dimensions.get('window');
 const COLORS = {primary: '#0E4944', white: '#fff', secondary:"#9BD35A"};
 
 const RegisterScreen = ({navigation}) => {
+  
+  const [email, setEmail] = useState('')
+  const [nom, setName] = useState('')
+  const [password, setPassword] = useState('')
+  const [validationMessage, setValidationMessage] = useState(null)
+  const [loading,setLoading] = useState(false);
+
+
+ async function createAccount() {
+  setLoading(true)
+  if(email === '' || password === '' || nom === '' ){
+    setValidationMessage('Tous les champs sont obligatoires');
+    setLoading(false)
+    return
+  }else{
+    try {
+      await createUserWithEmailAndPassword(auth, email, password)
+      setLoading(false)
+      navigation.navigate('LoginScreen');
+    } catch (error) {
+      setValidationMessage(error.message);
+      setLoading(false)
+    }
+    
+   }
+  }
 
   return (
     <KeyboardAvoidingComponent>
@@ -23,28 +51,34 @@ const RegisterScreen = ({navigation}) => {
               <View style={{width:"70%"}}>
                   <Text style={{fontSize:24, fontWeight:"bold"}}>Créer un nouveau Compte</Text>
               </View>
-              <View style={[styles.input,{marginTop:50}]}>
+              {validationMessage && <Text style={styles.error}>{validationMessage}</Text>}
+              <View style={[styles.input,{marginTop:30}]}>
+              <TextInput
+                  style={styles.inputForm}
+                  placeholder="Votre nom complet"
+                  value={nom}
+                  onChangeText={(text) => setName(text)}
+                />
+              </View>
+              <View style={[styles.input,{marginTop:20}]}>
                 <TextInput
                   style={styles.inputForm}
-                  placeholder="Votre adresse"
+                  placeholder="Votre adresse email"
+                  value={email}
+                  onChangeText={(text) => setEmail(text)}
                 />
               </View>
               <View style={styles.input}>
                 <TextInput
                     style={styles.inputForm}
                     placeholder="Mot de passe"
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                    secureTextEntry={true}
                   />
               </View>
-              <View style={styles.input}>
-                <TextInput
-                    style={styles.inputForm}
-                    placeholder="Mot de passe"
-                  />
-              </View>
-
-              
-
-              <TouchableOpacity style={styles.submit}>
+              <TouchableOpacity disabled={loading} onPress={()=>createAccount()} style={styles.submit}>
+                    {loading && <ActivityIndicator size="small" color="white" style={{marginRight:20}}/>}
                   <Text style={{fontSize:16, color:"white"}}>
                     S'inscrire
                   </Text>
@@ -134,6 +168,10 @@ const styles = StyleSheet.create({
     tinyLogo : {
       height: 20,
       width:20
+    },
+    error: {
+      marginTop: 10,
+      color: 'red',
     }
   });
 

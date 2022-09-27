@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView, Text, TouchableWithoutFeedback, Dimensions, FlatList, ImageBackground, TouchableOpacity, Image} from 'react-native';
 import AntDesign from "react-native-vector-icons/AntDesign"
+import CategorieList from '../components/categoriesList';
 
 import HeaderHome from "../components/headerHome";
 import HeroSection from '../components/heroSection';
@@ -13,7 +14,6 @@ const data = [
   "evenement 4",
 ]
 
-
 const HomeScreen = ({navigation}) => {
   return (
     <View
@@ -21,37 +21,8 @@ const HomeScreen = ({navigation}) => {
         <View style={{flex:1,borderBottomLeftRadius:20, borderBottomRightRadius:20, backgroundColor : "white", width:"100%"}}>
             <HeaderHome/>
             <HeroSection/>
-            <View style={{height:50}}>
-              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{flexDirection:"row", paddingHorizontal:15}}>
-                    <TouchableWithoutFeedback>
-                        <View  style={{marginTop :0,height:31, backgroundColor: "#0E4944", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:5}}>
-                            <Text style={{color : "white", textAlign:"center"}}>Tout</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback>
-                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:5}}>
-                            <Text style={{color : "#F5F6F8", textAlign:"center"}}>Education</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback>
-                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:5}}>
-                            <Text style={{color : "#F5F6F8", textAlign:"center"}}>Santé</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback>
-                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:5}}>
-                            <Text style={{color : "#F5F6F8", textAlign:"center"}}>Environnement</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback>
-                        <View  style={{marginTop :0,height:31, backgroundColor: "#C9C9C9", justifyContent:"center", alignItems:"center", paddingHorizontal:15, marginLeft: 10, borderRadius:5}}>
-                            <Text style={{color : "#F5F6F8", textAlign:"center"}}>Alimentation</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-
-              </ScrollView>
-            </View>
-            
+            <CategorieList/>
+          
             <FlatList
               data={data}
               horizontal
@@ -70,7 +41,7 @@ const HomeScreen = ({navigation}) => {
                             </TouchableOpacity>
                         </ImageBackground>
                         
-                        <TouchableOpacity onPress={()=>navigation.navigate("Details")}>
+                        <TouchableOpacity style={{backgroundColor:"#FBFBFC"}} onPress={()=>navigation.navigate("Details")}>
                             <View style={{padding:10, flexDirection:"row", alignItems:"center"}}>
                                 <Image
                                     source={require('../images/icon.png')}
@@ -87,8 +58,8 @@ const HomeScreen = ({navigation}) => {
                               </Text>
                             </View>
                             <View style={{padding:10}}>
-                                <View style={{height:5, width:"100%", backgroundColor:"#F4F4F6", borderRadius:20}}>
-                                    <View style={{height:5, borderRadius:20, backgroundColor:"#9BD35A", width:"80%"}}></View>   
+                                <View style={{height:8, width:"100%", backgroundColor:"#F4F4F6", borderRadius:20}}>
+                                    <View style={{height:8, borderRadius:20, backgroundColor:"#9BD35A", width:"50%"}}></View>   
                                 </View>
                                 <View style={{flexDirection:"row", paddingVertical:10, justifyContent:"space-between"}}>
                                     <Text style={{fontSize:12, color:"gray"}}>Objectif : </Text>
@@ -116,15 +87,17 @@ const styles = StyleSheet.create({
     width : width-100,
     borderColor : '#FBFBFC',
     borderWidth : 1,
-    marginLeft : 20
+    marginLeft : 20,
+    marginTop:20
   },
   share : {
-    height : 40,
-    width : 40,
+    height : 30,
+    width : 30,
     borderRadius : 5,
     backgroundColor : "#F5F6F8",
     justifyContent :"center",
-    alignItems : "center"
+    alignItems : "center",
+    marginBottom : 5
   }
 })
 

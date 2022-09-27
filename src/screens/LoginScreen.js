@@ -1,10 +1,50 @@
-import React from 'react';
-import {SafeAreaView, Text, Dimensions, StyleSheet, StatusBar, View, Image, TouchableOpacity, TextInput} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, Text, Dimensions, StyleSheet, StatusBar, View, Image, TouchableOpacity, TextInput, ActivityIndicator} from 'react-native';
 import KeyboardAvoidingComponent from '../components/keyboardAvoid';
 const {width, height} = Dimensions.get('window');
 const COLORS = {primary: '#0E4944', white: '#fff', secondary:"#9BD35A"};
+import {signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuthentication } from '../../utils/hook/useAuthentification'
+import { auth } from '../../config/firebase';
 
 const LoginScreen = ({navigation}) => {
+
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+  const [validationMessage,setvalidationMessage] = useState(null);
+  const [loading,setLoading] = useState(false);
+
+  const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+
+  async function login() {
+    setLoading(true)
+    if (email === '' || password === '') {
+      setvalidationMessage('Veuillez renseigner tous les champs')
+      setLoading(false)
+      return;
+    }else if(validateEmail(email)){
+      try {
+        await signInWithEmailAndPassword(auth, email, password )
+        setLoading(false)
+      } catch (error) {
+        setvalidationMessage("Email ou mot de passe incorrect");
+        setLoading(false)
+      }
+    }else{
+      setvalidationMessage("Format de l'email n'est pas pris en compte")
+      setLoading(false)
+      return;
+    }
+    
+  }
+
+
+
+
   return (
     <KeyboardAvoidingComponent>
       <SafeAreaView
@@ -20,23 +60,28 @@ const LoginScreen = ({navigation}) => {
               <View style={{width:"55%"}}>
                   <Text style={{fontSize:24, fontWeight:"bold"}}>S'identifier pour continuer</Text>
               </View>
-              <View style={[styles.input,{marginTop:50}]}>
+              {validationMessage && <Text style={styles.error}>{validationMessage}</Text>}
+              <View style={[styles.input,{marginTop:30}]}>
                 <TextInput
                   style={styles.inputForm}
                   placeholder="Email ou numéro de téléphone"
+                  value={email}
+                  onChangeText={(text) => setEmail(text)}
                 />
               </View>
               <View style={styles.input}>
                 <TextInput
-                    style={styles.inputForm}
-                    placeholder="Mot de passe"
-                  />
+                  style={styles.inputForm}
+                  placeholder="Mot de passe"
+                  value={password}
+                  onChangeText={(text) => setPassword(text)}
+                  secureTextEntry={true}
+                />
               </View>
-
-            
-              <TouchableOpacity onPress={()=>navigation.navigate('HomeStack')} style={styles.submit}>
+              <TouchableOpacity disabled={loading} onPress={()=>login()} style={styles.submit}>
+                  {loading && <ActivityIndicator size="small" color="white" style={{marginRight:20}}/>}
                   <Text style={{fontSize:16, color:"white"}}>
-                    Connexion
+                      Connexion
                   </Text>
               </TouchableOpacity>
               <View style={{justifyContent:"center", flexDirection:"row", marginTop:20}}>
@@ -131,6 +176,10 @@ const styles = StyleSheet.create({
     tinyLogo : {
       height: 20,
       width:20
+    },
+    error: {
+      marginTop: 10,
+      color: 'red',
     }
   });
 
